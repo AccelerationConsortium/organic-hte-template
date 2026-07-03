@@ -1,4 +1,4 @@
-# sdl2-hte-template
+# organic-hte-template
 
 Starter template for an SDL2 project repo — the **git side** of the lab's
 record layer. Authored artifacts (protocols, analysis code, agent rules) live

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/AccelerationConsortium/sdl2-hte-template/blob/main/schema/protocol.schema.json",
+  "$id": "https://github.com/AccelerationConsortium/organic-hte-template/blob/main/schema/protocol.schema.json",
   "title": "Lab protocol",
   "description": "Shape of a protocols/*.yaml file. Strict by design (unknown fields are errors) — extend this schema deliberately as the project's step vocabulary grows.",
   "type": "object",
