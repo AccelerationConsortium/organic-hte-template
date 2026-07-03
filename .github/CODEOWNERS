@@ -1,0 +1,7 @@
+# Human sign-off: merging to main requires review from these owners.
+# Replace with the project's PI / responsible reviewers (users or teams).
+* @AccelerationConsortium/REPLACE-ME
+
+# Protocols are the executable artifacts — keep their ownership explicit
+# even if the catch-all above changes.
+/protocols/ @AccelerationConsortium/REPLACE-ME

@@ -1,0 +1,11 @@
+# Local configs (machine paths, hostnames, credentials) — copy from
+# configs/*.example.json, keep out of git.
+*.local.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Run data never lives in this repo — it goes to AnaliticaDB via the API.
+data/

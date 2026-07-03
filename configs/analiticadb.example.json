@@ -1,0 +1,6 @@
+{
+  "base_url": "http://ANALITICADB-HOST:8010",
+  "project": "YOUR-PROJECT",
+  "operator": "you@university.edu",
+  "upsert": true
+}

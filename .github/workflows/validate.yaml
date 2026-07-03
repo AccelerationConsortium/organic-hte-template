@@ -1,0 +1,24 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  protocols:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # needed to compare step_ids against the base branch
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml jsonschema
+      - name: Validate protocols
+        run: |
+          if [ -n "${{ github.base_ref }}" ]; then
+            export BASE_REF="origin/${{ github.base_ref }}"
+          fi
+          python scripts/validate_protocols.py

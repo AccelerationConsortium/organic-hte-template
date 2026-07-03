@@ -1,0 +1,31 @@
+# Example protocol — replace with your project's procedures.
+#
+# Comments are for humans: rationale, cautions, review notes. They are NOT
+# rendered into the database Plan — anything the executor needs must be a
+# field. The Plan row stores this file's commit hash, which points back to
+# this commented source.
+protocol: example-protocol
+description: Minimal example showing the protocol shape.
+
+parameters:            # per-run inputs, filled by the orchestrator at run start
+  target_plate:
+    type: container
+    description: Plate the run operates on.
+  temperature_c:
+    type: number
+    default: 25
+
+steps:
+  # step_id is PERMANENT once this file has merged and executed — notes and
+  # measurements in AnaliticaDB anchor to it. Add new steps freely; never
+  # rename or reuse an id (CI enforces this on pull requests).
+  - step_id: prepare
+    action: example_action
+    params:
+      target: "{target_plate}"
+
+  - step_id: run
+    action: another_example_action
+    params:
+      temperature_c: "{temperature_c}"
+      duration_min: 30
