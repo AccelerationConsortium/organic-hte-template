@@ -22,3 +22,17 @@ jobs:
             export BASE_REF="origin/${{ github.base_ref }}"
           fi
           python scripts/validate_protocols.py
+
+  pins:
+    runs-on: ubuntu-latest
+    # Awareness, not enforcement: a moved upstream shows as a failed job
+    # here without blocking the merge.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Check upstream versions against pins.yaml
+        run: python scripts/check_pins.py

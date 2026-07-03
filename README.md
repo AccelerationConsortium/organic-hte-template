@@ -27,6 +27,11 @@ Design rationale: `AnaliticaDB/docs/eln-lims-generalization.md`, section
 4. Replace `protocols/example-protocol.yaml` with real protocols; extend
    `schema/protocol.schema.json` as your step vocabulary grows.
 5. Fill in the project-specific section of `AGENT_RULES.md`.
+6. In `pins.yaml`, keep the `organic-hte-template` pin at the
+   `TEMPLATE_VERSION` you stamped from, and add an `analiticadb-contract`
+   pin once the project writes records. Delete the `TEMPLATE_VERSION` and
+   `CHANGELOG.md` files — they belong to the template; your conformance
+   declaration is the pin.
 
 ## Layout
 
@@ -36,7 +41,9 @@ Design rationale: `AnaliticaDB/docs/eln-lims-generalization.md`, section
 ├── schema/protocol.schema.json   # machine-checkable protocol shape; CI validates every PR
 ├── analysis/                     # code that computes AnaliticaDB Analysis rows (commit-stamped)
 ├── configs/                      # config examples; real configs are *.local.json (gitignored)
+├── pins.yaml                     # cross-repo version pins (template, AnaliticaDB contract)
 ├── scripts/validate_protocols.py # the CI check, runnable locally
+├── scripts/check_pins.py         # upstream-drift check (non-blocking CI job)
 └── .github/                      # CODEOWNERS (human sign-off) + validate workflow
 ```
 
@@ -51,6 +58,23 @@ every PR, and runnable locally) checks each file in `protocols/`:
 4. On PRs: **`step_id`s that already exist on `main` are never removed or
    renamed** — notes and measurements in AnaliticaDB anchor to them. Adding
    steps is always fine.
+
+## Versioning & staying current
+
+Three version surfaces keep the lab's repos updatable against each other:
+
+- **`TEMPLATE_VERSION`** (this repo) — the template contract, semver,
+  bumped in the same PR as any change projects should adopt
+  (`CHANGELOG.md` says what and why).
+- **`pins.yaml`** (every project repo; this repo carries one as a live
+  example) — the project's declaration of which upstream versions it
+  conforms to: the template contract, and AnaliticaDB's ontology
+  `SCHEMA_VERSION` for projects that write records (AnaliticaDB enforces
+  that pin exact-match at runtime; the CI check is early warning).
+- **The CI `pins` job** — re-reads each upstream on every PR and fails
+  *non-blocking* (`continue-on-error`) when one moved, so drift is
+  visible without freezing work. Adopting an upstream bump = one PR that
+  applies the changes and updates the pin together.
 
 ## How a run flows
 

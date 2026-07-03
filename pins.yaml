@@ -1,0 +1,23 @@
+# Cross-repo version pins — this repo's declaration of which upstream
+# versions it conforms to / targets. The CI `pins` job re-checks each
+# upstream and fails (non-blocking — `continue-on-error`) when one has
+# moved, so drift is visible on every PR without blocking merges. Update a
+# pin in the same PR that adopts the newer upstream.
+#
+# In a project stamped from this template, pin at least:
+#   organic-hte-template — the template contract you conform to
+#                          (its TEMPLATE_VERSION file)
+#   analiticadb-contract — the AnaliticaDB ontology SCHEMA_VERSION you
+#                          write records against (exact-match at runtime;
+#                          its repo is private + Tailnet-only, so CI
+#                          usually reports it "skipped" — the runtime
+#                          exact-match check is the real enforcement)
+#
+# Pin shape:
+#   version:   what this repo conforms to / targets
+#   check:     URL where the current upstream version can be read
+#   json_path: optional dotted path when `check` returns JSON
+pins:
+  organic-hte-template:
+    version: "1.0.0"
+    check: https://raw.githubusercontent.com/AccelerationConsortium/organic-hte-template/main/TEMPLATE_VERSION

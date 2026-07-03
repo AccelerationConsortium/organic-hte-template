@@ -1,0 +1,26 @@
+# Changelog — organic-hte-template
+
+`TEMPLATE_VERSION` is the template's contract version (semver). Bump it in
+the same PR as any change a stamped project should adopt:
+
+- **MAJOR** — restructure requiring manual migration in projects
+- **MINOR** — new files, checks, or rules projects should copy in
+- **PATCH** — fixes/wording that change no obligations
+
+Projects declare the version they conform to in their `pins.yaml`; their CI
+surfaces (without blocking) when this file moves past their pin.
+
+## 1.0.0 — 2026-07-03
+
+Initial contract:
+
+- `protocols/` as the authored-artifact home; commented YAML validated
+  against `schema/protocol.schema.json` by CI (unique + permanent
+  `step_id`s enforced on PRs).
+- `AGENT_RULES.md` (links the lab-wide canon), `CODEOWNERS`,
+  `scripts/create_ruleset.sh` (protect-main: PR-only, squash-only,
+  required `protocols` check).
+- `pins.yaml` + `scripts/check_pins.py` + the non-blocking CI `pins` job:
+  cross-repo version pinning (template contract, AnaliticaDB ontology
+  `SCHEMA_VERSION`).
+- No run data, no filename versioning; local configs gitignored.
