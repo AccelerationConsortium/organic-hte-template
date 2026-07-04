@@ -21,3 +21,13 @@ pins:
   organic-hte-template:
     version: "1.0.0"
     check: https://raw.githubusercontent.com/AccelerationConsortium/organic-hte-template/main/TEMPLATE_VERSION
+
+  # Uncomment in a stamped project once it writes records to AnaliticaDB,
+  # pinning the ontology SCHEMA_VERSION it targets. The check URL is the
+  # live service's /status on the lab tailnet (the repo is private), so
+  # GitHub-hosted CI reports this pin "skipped" — the runtime exact-match
+  # check in the consumer is the real enforcement; this is early warning.
+  # analiticadb-contract:
+  #   version: "0.6.0"
+  #   check: http://100.64.254.6:8010/status
+  #   json_path: details.schema_version

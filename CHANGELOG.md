@@ -10,6 +10,13 @@ the same PR as any change a stamped project should adopt:
 Projects declare the version they conform to in their `pins.yaml`; their CI
 surfaces (without blocking) when this file moves past their pin.
 
+## 1.0.1 — 2026-07-04
+
+- `pins.yaml`: add a commented `analiticadb-contract` example (0.6.0) so
+  stamped projects have the pattern for pinning the ontology
+  `SCHEMA_VERSION` they write records against. Docs-only; no obligation
+  change (PATCH).
+
 ## 1.0.0 — 2026-07-03
 
 Initial contract:
