@@ -10,6 +10,18 @@ the same PR as any change a stamped project should adopt:
 Projects declare the version they conform to in their `pins.yaml`; their CI
 surfaces (without blocking) when this file moves past their pin.
 
+## 1.1.0 — 2026-07-13
+
+- Add `AGENTS.md` (shared, model-agnostic agent working instructions for all
+  agents — Hermes, Codex, Claude Code) and a thin `CLAUDE.md` (Claude-Code
+  specifics; imports `AGENTS.md`). These follow the canonical base established
+  in `ac-organic-lab` (`AGENTS.md` + `CLAUDE.md`): `AGENTS.md` references the
+  binding contract (`AGENT_RULES.md` + the lab-wide canon) without restating it,
+  and encodes the memory/instruction policy (AGENTS.md = shared, CLAUDE.md =
+  Claude-only, cross-repo facts → global memory by proposal). Projects should
+  copy both files in and fill the project-specific sections (MINOR — new files
+  projects should adopt).
+
 ## 1.0.1 — 2026-07-04
 
 - `pins.yaml`: add a commented `analiticadb-contract` example (0.6.0) so

@@ -26,7 +26,10 @@ Design rationale: `AnaliticaDB/docs/eln-lims-generalization.md`, section
    protocols from `main`.
 4. Replace `protocols/example-protocol.yaml` with real protocols; extend
    `schema/protocol.schema.json` as your step vocabulary grows.
-5. Fill in the project-specific section of `AGENT_RULES.md`.
+5. Fill in the project-specific sections of `AGENT_RULES.md` (safety/project
+   rules) and `AGENTS.md` (working conventions), and the Claude-specific block in
+   `CLAUDE.md` (set the repo memory-dir path). These three files follow the
+   canonical base in `ac-organic-lab`; keep the structure, add only specifics.
 6. In `pins.yaml`, keep the `organic-hte-template` pin at the
    `TEMPLATE_VERSION` you stamped from, and add an `analiticadb-contract`
    pin once the project writes records. Delete the `TEMPLATE_VERSION` and
@@ -36,6 +39,8 @@ Design rationale: `AnaliticaDB/docs/eln-lims-generalization.md`, section
 ## Layout
 
 ```
+├── AGENTS.md                     # shared agent working instructions (all agents); canonical base = ac-organic-lab
+├── CLAUDE.md                     # Claude-Code-specific notes (imports AGENTS.md)
 ├── AGENT_RULES.md                # agent rules: link to lab-wide canon + project-specific
 ├── protocols/                    # parameterized procedures (commented YAML) — the authored layer
 ├── schema/protocol.schema.json   # machine-checkable protocol shape; CI validates every PR
